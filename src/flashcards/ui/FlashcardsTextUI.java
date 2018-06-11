@@ -42,37 +42,54 @@ public class FlashcardsTextUI {
                 case 3:
                     editCard();
                     break;
+                case 4:
+                    deleteCard();
+                    break;
+                case 5:
+                    welcomeMessage();
+                    break;
+                case 6:
+                    showAllCards();
+                    break;
             }
         }
-        
-        
     }
 
     private void welcomeMessage() {
         System.out.println(
-                "1. test yourself\n" + 
-                "2. add new word\n"+ 
-                "3. edit old word\n" +
+                "1. test yourself\n"    + 
+                "2. add new card\n"     + 
+                "3. edit card\n"    +
+                "4. delete card\n"      +
+                "5. show options\n"     +
+                "6. show all cards\n"   +
                 "0. exit");
     }
 
     private void test() {
-        System.out.println("0 to quit");
+        System.out.println("enter to quit");
         while (true) {
             
             for (Cardable card : deck.getCards()) {
                 System.out.println(card.getFront());
                 System.out.print("meaning: ");
                 String response = reader.readString();
-                if (response.equals("0")) {
+                
+                if (response.equals("")) {
                     break;
                 }
-                if (response.contains(card.getBack())) {
+                
+                if (card.getBack().contains(response)) {
                     System.out.println("Correct!");
+                    System.out.println("\t" + card.getBack());
                 } else {
-                    System.out.println("Incorrect! :(");                    
+                    System.out.println("Incorrect! :(");
+                    System.out.println("\t" + card.getBack());
                 }
+                
+                spacer();
             }
+            
             System.out.println("Testing complete!");
             break;
         }
@@ -82,9 +99,12 @@ public class FlashcardsTextUI {
     private void addCard() {
         System.out.print("what is the word you'd like to add? ");
         String word = reader.readString();
+        
         System.out.print("what is the meaning of " + word + "? ");
         String meaning = reader.readString();
+        
         deck.add(new LanguageCard(word, meaning));
+        
         System.out.println(word + " added!");
     }
 
@@ -98,7 +118,18 @@ public class FlashcardsTextUI {
 
     private void exit() {
         System.out.println("Saving flash cards...");
-        FileAssistant.writeToFile(FileAssistant.DECK_FILE, deck);
+        //FileAssistant.writeToFile(FileAssistant.DECK_FILE, deck);
+        reader.close();
         System.exit(0);
+    }
+
+    private void deleteCard() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private void showAllCards() {
+        for (Cardable card : deck.getCards()) {
+            System.out.println(card);
+        }
     }
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author Thumbone1
  */
 public class TextReader {
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in, "UTF-8");
     
     public String readString() {
         try {
@@ -29,5 +29,9 @@ public class TextReader {
             return -1;
         }
         
+    }
+    
+    public void close() {
+        sc.close();
     }
 }
