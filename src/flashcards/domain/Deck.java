@@ -2,6 +2,7 @@
 
 package flashcards.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  *
  * @author Thumbone1
  */
-public class Deck {
+public class Deck implements Serializable {
     private List<Cardable> cards;
 
     public Deck() {
