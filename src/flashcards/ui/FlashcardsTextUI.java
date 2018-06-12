@@ -118,13 +118,13 @@ public class FlashcardsTextUI {
 
     private void exit() {
         System.out.println("Saving flash cards...");
-        //FileAssistant.writeToFile(FileAssistant.DECK_FILE, deck);
+        FileAssistant.writeToFile(FileAssistant.DECK_FILE, deck);
         reader.close();
         System.exit(0);
     }
 
     private void deleteCard() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("Not supported yet");
     }
 
     private void showAllCards() {

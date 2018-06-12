@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.charset.StandardCharsets;
 
 /**
  *
@@ -29,6 +28,9 @@ public class FileAssistant {
                  ObjectOutputStream o = new ObjectOutputStream(f)) {
                 
                 o.writeObject(deck);
+                
+                o.close();
+                f.close();
                 
             }
             

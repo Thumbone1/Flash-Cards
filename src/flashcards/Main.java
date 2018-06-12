@@ -5,19 +5,7 @@
  */
 package flashcards;
 
-import flashcards.domain.Cardable;
-import flashcards.domain.Deck;
-import flashcards.domain.LanguageCard;
 import flashcards.ui.FlashcardsTextUI;
-import flashcards.util.TextReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,42 +18,9 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        /*
-        what the f is going on with norwegian characters?
-        */
+        FlashcardsTextUI ui = new FlashcardsTextUI();
+        ui.start();
         
-        //Deck deck = new Deck();
-        //TextReader reader = new TextReader();
-        
-        Locale la = new Locale("no", "NO");
-        
-        
-        String str = "åøæ";
-        Scanner sc = new Scanner(str);
-        //sc.useLocale(la);
-        
-        System.out.println("type norwegian chars ");
-        //String s = sc.nextLine();
-        //System.out.println("string: " + str);
-        
-        
-        //System.out.println(s);
-        System.out.println(str);
-        System.out.println(sc.next());
-        
-        
-       //FlashcardsTextUI ui = new FlashcardsTextUI();
-
-       //ui.start();
-       
-        
-        
-          
-            
-        
-
-       
-       
        
     }
     
