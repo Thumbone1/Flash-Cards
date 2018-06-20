@@ -38,7 +38,7 @@ public class LanguageCard implements Cardable, Serializable {
     
     @Override
     public String toString() {
-        return getFront() + " " + getBack();
+        return getFront() + "-\t\t" + getBack();
     }
 
 }

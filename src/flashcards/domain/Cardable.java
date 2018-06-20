@@ -4,7 +4,7 @@ package flashcards.domain;
 
 /**
  *
- * @author judgeandsiri
+ * @author Thumbone1
  */
 public interface Cardable {
     public String getFront();
