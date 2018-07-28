@@ -2,7 +2,6 @@
 
 package flashcards.util;
 
-import flashcards.domain.Deck;
 import flashcards.domain.Genre;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,10 +15,9 @@ import java.io.ObjectOutputStream;
  * @author Thumbone1
  */
 public class FileAssistant {
-
-    public static void writeToFile(String newFileName, Genre genre) {
-        
-        File file = new File(newFileName + ".txt");
+    public static final File SAVE_FILE = new File("program.txt");
+            
+    public static void writeToFile(File file, SaveState saveState) {
         
         try {
             if (!file.exists()) {
@@ -29,7 +27,7 @@ public class FileAssistant {
             try (FileOutputStream f = new FileOutputStream(file); 
                  ObjectOutputStream o = new ObjectOutputStream(f)) {
                 
-                o.writeObject(genre);
+                o.writeObject(saveState);
                 
                 o.close();
                 f.close();
@@ -42,28 +40,28 @@ public class FileAssistant {
         
     }
         
-    public static Genre initializeGenre(File file) {
+    public static SaveState initializeGenre(File file) {
         
         if (!file.exists()) {
-            return new Genre();
+            return new SaveState();
         }
         
       
         try (FileInputStream fi = new FileInputStream(file);
              ObjectInputStream oi = new ObjectInputStream(fi)){
             
-            Genre genre = (Genre) oi.readObject();
+            SaveState saveState = (SaveState) oi.readObject();
             
             oi.close();
             fi.close();
             
-            return genre;
+            return saveState;
             
         } catch (NumberFormatException | IOException | ClassNotFoundException e) {
             System.out.println("Exception occured!\n " + e);
         }
         
-        return new Genre();
+        return new SaveState();
     }
     
     public static boolean deleteFile(File file) {        

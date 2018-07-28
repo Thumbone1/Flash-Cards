@@ -7,9 +7,9 @@ import flashcards.domain.Deck;
 import flashcards.domain.Genre;
 import flashcards.domain.LanguageCard;
 import flashcards.util.FileAssistant;
+import flashcards.util.SaveState;
 import flashcards.util.TextReader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,10 +21,12 @@ public class FlashcardsTextUI {
     private Map<String, Genre> genres;
     private Genre currentGenre;
     private Deck currentDeck;
+    private SaveState save;
 
     public FlashcardsTextUI() {
         this.reader = new TextReader();      
         this.genres = new HashMap<>();
+        this.save = new SaveState();
     }
     
     public void start() {
@@ -116,7 +118,7 @@ public class FlashcardsTextUI {
         currentDeck.add(new LanguageCard(word, meaning));
         
         System.out.println(word + " added!");
-        saveCurrentGenre();
+        saveCurrentState();
     }
 
     private void editCard() {
@@ -132,8 +134,8 @@ public class FlashcardsTextUI {
         System.exit(0);
     }
     
-    private void saveCurrentGenre() {
-        FileAssistant.writeToFile(currentGenre.getTitle(), currentGenre);
+    private void saveCurrentState() {
+        FileAssistant.writeToFile(FileAssistant.SAVE_FILE, save);
     }
 
     private void deleteCard() {
