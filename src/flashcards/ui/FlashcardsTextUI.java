@@ -8,6 +8,7 @@ import flashcards.domain.Genre;
 import flashcards.domain.LanguageCard;
 import flashcards.util.FileAssistant;
 import flashcards.util.TextReader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ public class FlashcardsTextUI {
 
     public FlashcardsTextUI() {
         this.reader = new TextReader();      
+        this.genres = new HashMap<>();
     }
     
     public void start() {
@@ -57,9 +59,6 @@ public class FlashcardsTextUI {
                 case 6:
                     showAllCards();
                     break;
-                case 7:
-                    addDeckToGenre();
-                    break;
                     
             }
         }
@@ -73,7 +72,6 @@ public class FlashcardsTextUI {
                 "4. delete card\n"          +
                 "5. show options\n"         +
                 "6. show all cards\n"       +
-                "7. add deck to a genre\n"  +
                 "0. exit");
     }
 
@@ -154,6 +152,8 @@ public class FlashcardsTextUI {
         
         Genre newGenre = new Genre();
         newGenre.setTitle(genreName);
+        genres.put(genreName, newGenre);
+        currentGenre = genres.get(genreName);
         
     }
     
@@ -162,6 +162,7 @@ public class FlashcardsTextUI {
         String newKey = reader.readString();
         
         currentGenre.addDeck(newKey, new Deck());
+        currentDeck = currentGenre.getDeck(newKey);
         
     }
 
