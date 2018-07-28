@@ -3,6 +3,7 @@
 package flashcards.util;
 
 import flashcards.domain.Deck;
+import flashcards.domain.Genre;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,9 +16,10 @@ import java.io.ObjectOutputStream;
  * @author Thumbone1
  */
 public class FileAssistant {
-    public static final File DECK_FILE = new File("deck.txt");
 
-    public static void writeToFile(File file, Deck deck) {
+    public static void writeToFile(String newFileName, Genre genre) {
+        
+        File file = new File(newFileName + ".txt");
         
         try {
             if (!file.exists()) {
@@ -27,7 +29,7 @@ public class FileAssistant {
             try (FileOutputStream f = new FileOutputStream(file); 
                  ObjectOutputStream o = new ObjectOutputStream(f)) {
                 
-                o.writeObject(deck);
+                o.writeObject(genre);
                 
                 o.close();
                 f.close();
@@ -40,28 +42,28 @@ public class FileAssistant {
         
     }
         
-    public static Deck initializeDeck(File file) {
+    public static Genre initializeGenre(File file) {
         
         if (!file.exists()) {
-            return new Deck();
+            return new Genre();
         }
         
       
         try (FileInputStream fi = new FileInputStream(file);
              ObjectInputStream oi = new ObjectInputStream(fi)){
             
-            Deck deck = (Deck) oi.readObject();
+            Genre genre = (Genre) oi.readObject();
             
             oi.close();
             fi.close();
             
-            return deck;
+            return genre;
             
         } catch (NumberFormatException | IOException | ClassNotFoundException e) {
             System.out.println("Exception occured!\n " + e);
         }
         
-        return new Deck();
+        return new Genre();
     }
     
     public static boolean deleteFile(File file) {        

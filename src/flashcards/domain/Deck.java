@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class Deck implements Serializable {
     private List<Cardable> cards;
+    private String name;
 
     public Deck() {
         this.cards = new ArrayList<>();
@@ -32,5 +33,15 @@ public class Deck implements Serializable {
     public String showBack(Cardable cardable) {
         return cardable.getBack();
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    
 
 }
